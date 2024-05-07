@@ -1,8 +1,8 @@
-// Actions 
+// type Actions 
 export type BudgetActions = 
     {type: 'define-budget', payload: {budget : number}}
 
-// State
+// type State
 export type BudgetState = {
     budget: number 
 }
