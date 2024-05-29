@@ -10,8 +10,10 @@ type BudgetProviderProps = {
     children: ReactNode
 }
 
+// Contexto para el estado de la app
 export const BudgetContext = createContext<BudgetContextProps>(null!)
 
+// Provider del contexto
 export const BudgetProvider = ({ children } : BudgetProviderProps) => {
     
     const [state, dispatch] = useReducer(budgetReducer, initialState)
@@ -26,4 +28,5 @@ export const BudgetProvider = ({ children } : BudgetProviderProps) => {
             {children}
         </BudgetContext.Provider>        
     )
+
 }
