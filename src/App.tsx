@@ -1,6 +1,10 @@
+import { useDebugValue } from "react"
 import BudgetForm from "./components/BudgetForm"
+import { useBudget } from "./hooks/useBudget"
 
 function App() {
+
+  const { state, dispatch } = useBudget()
 
   return (
     <div className=" bg-slate-100 min-h-screen">
