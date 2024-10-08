@@ -1,13 +1,21 @@
+import { useState } from "react";
+
 import { categories } from "../data/categories";
+import { DraftExpense } from "../types";
+
 import DatePicker from 'react-date-picker';
 import 'react-date-picker/dist/DatePicker.css'
 import 'react-calendar/dist/Calendar.css'
- 
-// type ValuePiece = Date | null;
-
-// type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 export default function ExpenseForm() {
+
+  const [expense, setExpense] = useState<DraftExpense>({
+    amount: 0, 
+    expenseName: '',
+    category: '',
+    date: new Date() 
+})
+
   return (
     <form className=" space-y-5">
       <legend className="uppercase text-center text-2xl font-black border-b-4 border-blue-500 py-2">
@@ -24,6 +32,7 @@ export default function ExpenseForm() {
           placeholder="Añade el Nombre del gasto"
           className=" bg-slate-100 p-2"
           name="expenseName"
+          value={expense.expenseName}
         />
       </div>
 
@@ -37,6 +46,7 @@ export default function ExpenseForm() {
           placeholder="Añade la Cantidad del gasto: ej. 300"
           className=" bg-slate-100 p-2"
           name="amount" // se usa para identificar el campo en el formulario
+          value={expense.amount}
         />
       </div>
 
@@ -44,16 +54,21 @@ export default function ExpenseForm() {
         <label htmlFor="category" className="text-xl">
           Categoría:
         </label>
-        <select id="category" className=" bg-slate-100 p-2" name="category">
-          <option value=""> -- Seleccione --</option>
-          {categories.map((category) => (
-            <option 
-              key={category.id} 
-              value={category.id}
-            >
-              {category.name}
-            </option>
-          ))}
+        <select 
+            id="category" 
+            className=" bg-slate-100 p-2" 
+            name="category" 
+            value={expense.category}
+          >
+            <option> -- Seleccione --</option>
+            {categories.map((category) => (
+              <option 
+                key={category.id} 
+                value={category.id}
+              >
+                {category.name}
+              </option>
+            ))}
         </select>
       </div>
 
@@ -62,7 +77,8 @@ export default function ExpenseForm() {
           Fecha Gasto:
         </label>
         <DatePicker
-          className=""
+          className=" bg-slate-100 p-2 border-0"
+          value={expense.date}
         />
       </div>
 
