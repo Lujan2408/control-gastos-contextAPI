@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 import { categories } from "../data/categories";
 import { DraftExpense, Value } from "../types";
@@ -19,7 +19,16 @@ export default function ExpenseForm() {
   });
 
   const [error, setError] = useState('')
-  const { dispatch } = useBudget()
+  const { dispatch, state } = useBudget()
+
+  // Editar el Form con el Swipe de actualizar 
+  useEffect(() => {
+    if(state.editingId) {
+      const editingExpense = state.expenses.filter( currentExpense => currentExpense.id === state.editingId )[0]
+        setExpense(editingExpense)
+    }
+  },[state.editingId, state.expenses])
+
 
   const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
