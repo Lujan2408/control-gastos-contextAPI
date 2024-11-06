@@ -24,7 +24,7 @@ export default function BudgetForm() {
         <form className=" space-y-5" onSubmit={handleSubmit}>
             <div className=" flex flex-col space-y-5">
                 <label htmlFor="budget" className=" text-4xl text-blue-600 font-bold text-center">
-                    Definir Presupuesto
+                    Define tu Presupuesto
                 </label>
                 <input 
                     id="budget"
@@ -39,8 +39,8 @@ export default function BudgetForm() {
             
             <input 
                 type="submit" 
-                value="Guardar Presupuesto"
-                className=" bg-blue-600 hover:bg-blue-700 cursor-pointer w-full p-2 text-white font-black uppercase disabled:opacity-40"
+                value="Guardar"
+                className=" bg-blue-600 hover:bg-blue-700 cursor-pointer w-full p-2 text-white font-bold uppercase disabled:opacity-40"
                 disabled={isValid}
             />
         </form>
